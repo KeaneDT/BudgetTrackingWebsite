@@ -1,8 +1,5 @@
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
+html { width:100%; height:100%; margin:0; padding:0; }
+body { width:100%; height:100%; margin:0; padding:0; }
 
 nav {
     font-weight: bolder;
@@ -34,9 +31,21 @@ a:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-weight: bold;
-    font-size: 50px;
 }
+.moneyTitle h1 {
+    font-weight: bold;
+}
+.display-4 {
+    padding-top: 3%;
+    padding-bottom: 1%;
+}
+.aboutText p {
+    padding-top: 2%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 
 @media only screen and (min-width: 768px) {
     .navbar-toggler-icon {
@@ -45,4 +54,4 @@ a:hover {
     .navbar-toggle {
         display: none;
     }
-  }
+}
