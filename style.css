@@ -1,0 +1,13 @@
+nav {
+    font-weight: bolder;
+    font-size: large;
+    text-decoration: none;
+}
+a {
+    text-decoration: none;
+    color: white;
+}
+a:hover {
+    text-decoration: none;
+    color: white;
+}
