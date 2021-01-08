@@ -6,7 +6,7 @@ The tracker will use simple Javascript, to take the budget entered by the user t
 
 (I might find an API to make this process of tracking and logging data easier.)
 
-Some additional features i would like to add to the website is a dark mode API which will switch the color theme of the page upon clicking an icon.
+Some additional features i would like to add to the website is a dark mode feature which will switch the color theme of the page upon clicking an icon.
 
 # Reason
 
