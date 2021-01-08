@@ -1,5 +1,6 @@
 $(".topSubmit").click(topSubmit)
 $(".bottomSubmit").click(addExpense)
+$(".clearEL").click(clearList)
 
 var noClick = 0;
 
@@ -7,8 +8,6 @@ function topSubmit() {
     month = document.getElementById("monthInput").value;
     budget = document.getElementById("budgetInput").value;
     budget = budget.replace(/\D/g,'');
-
-    el = document.getElementsByClassName("expenseItems");
 
     if (month==0) {
         alert("Month Field is empty!")
@@ -48,6 +47,7 @@ function addExpense() {
         alert("Balance is less than or equal to 0!")
     } else {
         expense = document.getElementById("expenseInput").value;
+        category = document.getElementById("expenseCat").value;
         if (expense==0 || expense<0) {
             alert("Expense Field is empty or has a negative value!")
         } else {
@@ -60,9 +60,24 @@ function addExpense() {
                 $(".balanceText").append("$");
                 $(".balanceText").append(balance);
     
-                $(".expenseItems").append("$" + expense + "<br>");
+                $(".expenseItems").append("$" + expense + "[" + category + "]" + "<br>");
+
                 noClick = noClick + 1;
             }
         }
+    }
+}
+
+function clearList() {
+    original = document.getElementById("budget").innerHTML;
+    original = original.replace(/\D/g,'');
+    if (original==0||original<0) {
+        alert("There is nothing to clear!");
+    } else {
+        $(".balanceText").empty();
+        $(".expenseItems").empty();
+        $(".balanceText").append("$");
+        $(".balanceText").append(original);
+        noClick = 0;
     }
 }
