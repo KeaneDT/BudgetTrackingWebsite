@@ -103,7 +103,32 @@ a:hover {
 }
 
 /*CSS Styling for Expense Box*/
+.expenseBox {
+    margin-top: 2%;
+    height: 22%;
+    color: black;
+}
+.expenseBox label {
+    font-weight: normal;
+    font-size: 30px;
+    padding-bottom: 2%;
+}
+.expenseBox input {
+    font-size: 20px;
+    margin-bottom: 2%;
+}
+/*CSS Styling for Expenses List*/
 
+.elTitle {
+    color: white;
+    font-size: 35px;
+    padding-left: 5%;
+}
+.expenseItems {
+    color: white;
+    font-size: 30px;
+    line-height: 1.8;
+}
 
 
 
@@ -124,11 +149,24 @@ a:hover {
     .budgetBox input {
         margin-left: 5%;
     }
-    
+
     .budgetText {
         padding-top: 1%;
     }
     .balanceText {
         padding-top: 1%;
+    }
+
+    .expenseBox label {
+        margin-right: 2%;
+    }
+    .expenseBox input {
+        margin-left: 2%;
+    }
+
+    .elTitle {
+        margin-left: 15%;
+        padding-top: 3%;
+        padding-bottom: 3%;
     }
 }

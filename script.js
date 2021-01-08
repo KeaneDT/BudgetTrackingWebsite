@@ -1,20 +1,68 @@
-import Darkmode from 'darkmode-js';
+$(".topSubmit").click(topSubmit)
+$(".bottomSubmit").click(addExpense)
 
-new Darkmode().showWidget();
+var noClick = 0;
 
-const options = {
-    bottom: '64px', // default: '32px'
-    right: 'unset', // default: '32px'
-    left: '32px', // default: 'unset'
-    time: '0.5s', // default: '0.3s'
-    mixColor: '#fff', // default: '#fff'
-    backgroundColor: '#fff',  // default: '#fff'
-    buttonColorDark: '#100f2c',  // default: '#100f2c'
-    buttonColorLight: '#fff', // default: '#fff'
-    saveInCookies: false, // default: true,
-    label: '🌓', // default: ''
-    autoMatchOsTheme: true // default: true
+function topSubmit() {
+    month = document.getElementById("monthInput").value;
+    budget = document.getElementById("budgetInput").value;
+    budget = budget.replace(/\D/g,'');
+
+    el = document.getElementsByClassName("expenseItems");
+
+    if (month==0) {
+        alert("Month Field is empty!")
+    } else if (budget==0 || budget<0) {
+        alert("Budget Field is empty or has a negative value!")
+    } else {
+        
+        if (noClick>0) {
+            var r = confirm("Clicking OK will clear Expense List. Are you sure you want to continue?")
+            if (r==true) {
+                $(".expenseItems").empty();
+                $(".budgetText").empty();
+                $(".budgetText").append("$");
+                $(".budgetText").append(budget);
+                $(".balanceText").empty();
+                $(".balanceText").append("$");
+                $(".balanceText").append(budget);
+                noClick = 0;
+            }
+        } else {
+            $(".expenseItems").empty();
+            $(".budgetText").empty();
+            $(".budgetText").append("$");
+            $(".budgetText").append(budget);
+            $(".balanceText").empty();
+            $(".balanceText").append("$");
+            $(".balanceText").append(budget);
+        }
+    }
 }
-  
-const darkmode = new Darkmode(options);
-darkmode.showWidget();
+
+function addExpense() {
+    balance = document.getElementById("balance").innerHTML;
+    balance = balance.replace(/(?!-)[^0-9.]/g, "");
+
+    if (balance<=0) {
+        alert("Balance is less than or equal to 0!")
+    } else {
+        expense = document.getElementById("expenseInput").value;
+        if (expense==0 || expense<0) {
+            alert("Expense Field is empty or has a negative value!")
+        } else {
+
+            if (balance-expense<0) {
+                alert("You have gone over your budget!")
+            } else {
+                balance = balance - expense;
+                $(".balanceText").empty();
+                $(".balanceText").append("$");
+                $(".balanceText").append(balance);
+    
+                $(".expenseItems").append("$" + expense + "<br>");
+                noClick = noClick + 1;
+            }
+        }
+    }
+}
