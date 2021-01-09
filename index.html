@@ -23,7 +23,7 @@
        <!--To make navbar 100% of top-->
        <div class="container-fluid">
          <!--Customizing Navigtation Bar-->
-         <a href="index.html" class="navName">$</a>
+         <a href="#trackerSection" class="navName">$</a>
          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -65,6 +65,7 @@
     <div class="trackerName" id="trackerSection">
       <div class="container-fluid text-center bg-dark">
         <h2>The Application</h2>
+        <button class="btn-sm loadData">Load Data</button>
       </div>
     </div>
     <!--Input for the month name-->
@@ -136,22 +137,22 @@
       <!--Empty Box that will have the values appended when input-->
       <div class="col-12 text-center expenseItems"></div>
     </div>
+    <div class="container-fluid text-center">
+      <button class="toggleChart">Toggle Charts</button>
+    </div>
     <!--Chart JS Container-->
     <div class="container-fluid chartBox">
+      <div class="alert">
+        <span class="lead closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        Charts will only generate upon inputting values above!
+      </div>
       <h2 class="text-center lead">Category Chart</h2>
       <div class="col-12 text-center dCat">
         <canvas id="pieExpense"></canvas>
       </div>
-
+      
     </div>
 
-
-
-
-
-
-
-    
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>

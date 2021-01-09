@@ -38,3 +38,4 @@ Money Image used from: https://www.investopedia.com/terms/m/money.asp
 
 # Acknowledgements
 Color Scheme for doughnut chart: http://www.mulinblog.com/a-color-palette-optimized-for-data-visualization/
+How to create alert boxes: https://www.w3schools.com/howto/howto_js_alert.asp

@@ -3,6 +3,9 @@ $(document).ready(function() {
     $(".bottomSubmit").click(addExpense);
     $(".clearEL").click(clearList);
     $(".saveEL").click(saveData);
+    $(".toggleChart").click(function(){
+        $(".chartBox").toggle();
+    })
 });
 
 
@@ -217,6 +220,8 @@ function saveData() {
     }
     
 }
+
+
 
 
 
