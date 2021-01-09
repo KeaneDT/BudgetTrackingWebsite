@@ -33,13 +33,6 @@ var chart1 = new Chart(ctx, {
     }
 });
 
-//Chart to diplay previous months
-
-
-
-
-
-
 //Functions:
 function topSubmit() {
     month = document.getElementById("monthInput").value;
