@@ -1,9 +1,36 @@
-$(".topSubmit").click(topSubmit)
-$(".bottomSubmit").click(addExpense)
-$(".clearEL").click(clearList)
+$(document).ready(function() {
+    $(".topSubmit").click(topSubmit);
+    $(".bottomSubmit").click(addExpense);
+});
+$(".clearEL").click(clearList);
 
 var noClick = 0;
 
+//First DOughnut Chart to showcase the categories
+var catData = [0, 0, 0, 0, 0, 0]
+var catLabels = ['Entertainment', 'Food & Beverages', 'Transportation', 'Bills & Utilities', 'Savings', 'Others']
+
+var ctx = document.getElementById('pieExpense').getContext('2d');
+
+var chart1 = new Chart(ctx, {
+    // Doughnut chart for the categories
+    type: 'doughnut',
+    // The data for our dataset
+    data: {
+        labels: catLabels,
+        datasets: [{
+            label: 'Categories',
+            backgroundColor: ['#5DA5DA','#FAA43A','#F15854','#B276B2', '#60BD68', '#4D4D4D'],
+            data: catData
+        }]
+    },
+    // Configuration options go here
+    options: {
+        responsive: true
+    }
+});
+
+//Functions:
 function topSubmit() {
     month = document.getElementById("monthInput").value;
     budget = document.getElementById("budgetInput").value;
@@ -25,6 +52,9 @@ function topSubmit() {
                 $(".balanceText").empty();
                 $(".balanceText").append("$");
                 $(".balanceText").append(budget);
+                catData = [0, 0, 0, 0, 0, 0];
+                chart1.destroy();
+                generateCat();
                 noClick = 0;
             }
         } else {
@@ -60,7 +90,23 @@ function addExpense() {
                 $(".balanceText").append("$");
                 $(".balanceText").append(balance);
     
-                $(".expenseItems").append("$" + expense + "[" + category + "]" + "<br>");
+                $(".expenseItems").append("$" + expense + "-[" + category + "]" + "<br>");
+
+                if (category == 'Entertainment') {
+                    catData[0] = catData[0] + Number(expense);
+                } else if (category == 'Food & Beverages') {
+                    catData[1] = catData[1] + Number(expense);
+                } else if (category == 'Transportation') {
+                    catData[2] = catData[2] + Number(expense);
+                } else if (category == 'Bills & Utilities') {
+                    catData[3] = catData[3] + Number(expense);
+                } else if (category == 'Savings') {
+                    catData[4] = catData[4] + Number(expense);
+                } else if (category == 'Others') {
+                    catData[5] = catData[5] + Number(expense);
+                }
+
+                chart1.update();
 
                 noClick = noClick + 1;
             }
@@ -78,6 +124,34 @@ function clearList() {
         $(".expenseItems").empty();
         $(".balanceText").append("$");
         $(".balanceText").append(original);
+        catData = [0, 0, 0, 0, 0, 0]
+        chart1.destroy();
+        generateCat();
         noClick = 0;
     }
 }
+
+function generateCat() {
+    var ctx = document.getElementById('pieExpense').getContext('2d');
+    chart1 = new Chart(ctx, {
+        // Doughnut chart for the categories
+        type: 'doughnut',
+        // The data for our dataset
+        data: {
+            labels: ['Entertainment', 'Food & Beverages', 'Transportation', 'Bills & Utilities', 'Savings', 'Others'],
+            datasets: [{
+                label: 'Categories',
+                backgroundColor: ['#5DA5DA','#FAA43A','#F15854','#B276B2', '#60BD68', '#4D4D4D'],
+                data: catData
+            }]
+        },
+        // Configuration options go here
+        options: {
+            responsive: true
+        }
+    });
+}
+
+
+
+

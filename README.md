@@ -37,3 +37,4 @@ So far I have used Bootstrap to help me make the website.
 Money Image used from: https://www.investopedia.com/terms/m/money.asp
 
 # Acknowledgements
+Color Scheme for doughnut chart: http://www.mulinblog.com/a-color-palette-optimized-for-data-visualization/
