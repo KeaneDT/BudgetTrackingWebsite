@@ -172,31 +172,57 @@ function generateCat() {
 }
 
 function saveData() {
-    var r = confirm("Clicking OK will save the data. Are you sure you want to continue?");
-    if (r==true) {
-        budgetMod = document.getElementById("budget").innerHTML;
-        budgetMod = budgetMod.replace(/\D/g,'');
-        balanceMod = document.getElementById("balance").innerHTML;
-        balanceMod = balanceMod.replace(/\D/g,'');
-        month = document.getElementById("monthText").innerHTML;
-        var total = 0;
-        for (var i  = 0; i < catData.length; i++){
-            total += catData[i];
-        }
-        
-        let saveObject = {
-            month: document.getElementById("monthText").innerHTML,
-            budget: budgetMod,
-            balance: balanceMod,
-            expense: catData,
-            labels: catLabels,
-            totalSpent: total
-        }
-
-        saveFile.push(saveObject);
-        localStorage.setItem('SaveData', JSON.stringify(saveFile));
-
+    balance = document.getElementById("balance").innerHTML;
+    budget = document.getElementById("budget").innerHTML;
+    budget = budget.replace(/\D/g,'');
+    balance = balance.replace(/\D/g,'');
+    month = document.getElementById("monthText").innerHTML;
+    var total = 0;
+    for (var i  = 0; i < catData.length; i++){
+        total += catData[i];
     }
+    if (budget==0||budget<0) {
+        alert("You cannot save as there is no data!");
+    } else if (total==0) {
+        var x = confirm("There is no expense tracked. Are you sure you want to continue?");
+        if (x==true) {
+            let saveObjectNE = {
+                month: document.getElementById("monthText").innerHTML,
+                budget: budget,
+                balance: balance,
+                expense: catData,
+                labels: catLabels,
+                totalSpent: total
+            }
+            saveFile.push(saveObjectNE);
+            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            document.getElementById("formTop").reset();
+            document.getElementById("formBottom").reset();
+            clearList();
+            $(".budgetText").empty();
+            $(".balanceText").empty();
+        }
+    } else {
+        var r = confirm("Clicking OK will save the data. Are you sure you want to continue?");
+        if (r==true) {
+            let saveObject = {
+                month: document.getElementById("monthText").innerHTML,
+                budget: budget,
+                balance: balance,
+                expense: catData,
+                labels: catLabels,
+                totalSpent: total
+            }
+            saveFile.push(saveObject);
+            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            document.getElementById("formTop").reset();
+            document.getElementById("formBottom").reset();
+            clearList();
+            $(".budgetText").empty();
+            $(".balanceText").empty();
+        }
+    }
+    
 }
 
 
