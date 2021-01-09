@@ -95,6 +95,9 @@ a:hover {
 }
 
 /*CSS Styling for Budget/Balance Box*/
+.monthText {
+    font-size: 30px;
+}
 .displayBudBal {
     margin-top: 2%;
     height: 20%;
@@ -135,7 +138,7 @@ a:hover {
 }
 .elTitle {
     color: white;
-    font-size: 30px;
+    font-size: 25px;
 }
 .expenseItems {
     color: white;

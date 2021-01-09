@@ -1,13 +1,16 @@
 $(document).ready(function() {
     $(".topSubmit").click(topSubmit);
     $(".bottomSubmit").click(addExpense);
+    $(".clearEL").click(clearList);
+    $(".saveEL").click(saveData);
 });
-$(".clearEL").click(clearList);
+
 
 var noClick = 0;
+let saveFile = [];
 
 //First DOughnut Chart to showcase the categories
-var catData = [0, 0, 0, 0, 0, 0]
+var catData = [0, 0, 0, 0, 0, 0];
 var catLabels = ['Entertainment', 'Food & Beverages', 'Transportation', 'Bills & Utilities', 'Savings', 'Others']
 
 var ctx = document.getElementById('pieExpense').getContext('2d');
@@ -30,6 +33,13 @@ var chart1 = new Chart(ctx, {
     }
 });
 
+//Chart to diplay previous months
+
+
+
+
+
+
 //Functions:
 function topSubmit() {
     month = document.getElementById("monthInput").value;
@@ -37,14 +47,15 @@ function topSubmit() {
     budget = budget.replace(/\D/g,'');
 
     if (month==0) {
-        alert("Month Field is empty!")
+        alert("Month Field is empty!");
     } else if (budget==0 || budget<0) {
-        alert("Budget Field is empty or has a negative value!")
-    } else {
-        
+        alert("Budget Field is empty or has a negative value!");
+    } else {  
         if (noClick>0) {
-            var r = confirm("Clicking OK will clear Expense List. Are you sure you want to continue?")
+            var r = confirm("Clicking OK will clear Expense List. Are you sure you want to continue?");
             if (r==true) {
+                $(".monthText").empty();
+                $(".monthText").html(month);
                 $(".expenseItems").empty();
                 $(".budgetText").empty();
                 $(".budgetText").append("$");
@@ -57,7 +68,9 @@ function topSubmit() {
                 generateCat();
                 noClick = 0;
             }
+
         } else {
+            $(".monthText").html(month);
             $(".expenseItems").empty();
             $(".budgetText").empty();
             $(".budgetText").append("$");
@@ -74,16 +87,16 @@ function addExpense() {
     balance = balance.replace(/(?!-)[^0-9.]/g, "");
 
     if (balance<=0) {
-        alert("Balance is less than or equal to 0!")
+        alert("Balance is less than or equal to 0!");
     } else {
         expense = document.getElementById("expenseInput").value;
         category = document.getElementById("expenseCat").value;
         if (expense==0 || expense<0) {
-            alert("Expense Field is empty or has a negative value!")
+            alert("Expense Field is empty or has a negative value!");
         } else {
 
             if (balance-expense<0) {
-                alert("You have gone over your budget!")
+                alert("You have gone over your budget!");
             } else {
                 balance = balance - expense;
                 $(".balanceText").empty();
@@ -94,14 +107,19 @@ function addExpense() {
 
                 if (category == 'Entertainment') {
                     catData[0] = catData[0] + Number(expense);
+
                 } else if (category == 'Food & Beverages') {
                     catData[1] = catData[1] + Number(expense);
+
                 } else if (category == 'Transportation') {
                     catData[2] = catData[2] + Number(expense);
+
                 } else if (category == 'Bills & Utilities') {
                     catData[3] = catData[3] + Number(expense);
+
                 } else if (category == 'Savings') {
                     catData[4] = catData[4] + Number(expense);
+
                 } else if (category == 'Others') {
                     catData[5] = catData[5] + Number(expense);
                 }
@@ -120,11 +138,12 @@ function clearList() {
     if (original==0||original<0) {
         alert("There is nothing to clear!");
     } else {
+        $(".monthText").empty();
         $(".balanceText").empty();
         $(".expenseItems").empty();
         $(".balanceText").append("$");
         $(".balanceText").append(original);
-        catData = [0, 0, 0, 0, 0, 0]
+        catData = [0, 0, 0, 0, 0, 0];
         chart1.destroy();
         generateCat();
         noClick = 0;
@@ -150,6 +169,34 @@ function generateCat() {
             responsive: true
         }
     });
+}
+
+function saveData() {
+    var r = confirm("Clicking OK will save the data. Are you sure you want to continue?");
+    if (r==true) {
+        budgetMod = document.getElementById("budget").innerHTML;
+        budgetMod = budgetMod.replace(/\D/g,'');
+        balanceMod = document.getElementById("balance").innerHTML;
+        balanceMod = balanceMod.replace(/\D/g,'');
+        month = document.getElementById("monthText").innerHTML;
+        var total = 0;
+        for (var i  = 0; i < catData.length; i++){
+            total += catData[i];
+        }
+        
+        let saveObject = {
+            month: document.getElementById("monthText").innerHTML,
+            budget: budgetMod,
+            balance: balanceMod,
+            expense: catData,
+            labels: catLabels,
+            totalSpent: total
+        }
+
+        saveFile.push(saveObject);
+        localStorage.setItem('SaveData', JSON.stringify(saveFile));
+
+    }
 }
 
 
