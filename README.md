@@ -31,7 +31,7 @@ Potential:
 
 # Technology used
 
-So far I have used Bootstrap to help me make the website.
+So far I have used Bootstrap, Jquery & Chart.Js to help me make the website.
 
 # Media 
 Money Image used from: https://www.investopedia.com/terms/m/money.asp
