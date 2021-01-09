@@ -33,6 +33,8 @@ Potential:
 
 So far I have used Bootstrap, Jquery & Chart.Js to help me make the website.
 
+I have also added nomalize css: https://necolas.github.io/normalize.css/8.0.1/normalize.css
+
 # Media 
 Money Image used from: https://www.investopedia.com/terms/m/money.asp
 
