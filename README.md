@@ -8,6 +8,13 @@ The tracker will use simple Javascript, to take the budget entered by the user t
 
 Some additional features i would like to add to the website is a dark mode feature which will switch the color theme of the page upon clicking an icon.
 
+# Problems Faced
+I initially wanted to add a line chat below the doughnut chart, which would compare the total expenses across the various months objects saved in the local storage. However, I had to remove this feature as the line chart would keep bugging out and would break the application.
+
+Another Issue that users might face that I was unable to fix was the doughnut chart disappearing and not being loaded back in after creating and saving objects rapidly. This only happed to me once so it should not be too much of an issue.
+
+Creating an object month with the same name would also bug the Localstorage out and would mix up the values.
+
 # Reason
 
 The main reason I am creating this application is to help people to keep track of their spending habits and alongside this, promote healthy spending habits. I think that overspending is an issue in this day and age as I have seen many people not set monthly budgets for themselves and spend an enormous amount of money on unnecessary expenses.
@@ -19,16 +26,25 @@ From the perspective of the user, I would like a simple to use application which
 The Wireframe files can be found in the ID_S10202630_Keane Travasso_Wireframe folder.
 It consists of 2 .xd files, one for the Desktop view and the other for the mobile view.
 
-# Features to be implemented
+# Features implemented
 
 -Allows users to input a budget which would set the initial value for the budget variable
--Allows users to input their expenses for the month which would be deducted from the balance variable
+-Allows users to input their expenses for the month as well as the categories which would be deducted from the balance variable
 -Allows users to save the final balance once they have subtracted all their expenses
--Allows users to track their total expenses compared to other month inputs through the use of a line chart
+-Allows users to a overview of which categories they spent the most money at, in the form of a doughnut chart
+-Budget input field only allows valid numbers and filters out any non-numbers
+-All submit buttons do not work unless there are values in the respective input fields
+-Adding expenses will 'lock' the input fields for month and budget, asking the user to confirm if they want to make some changes
+-All expenses inputted are appended to the expense list as well as their category
+-There is a clear button in the expense list which clears the list and restores the original balance amount
+-The application will alert the user if the expense value is more than the balance value
+-Expense changes are mirrored in the chart as soon as they are made.
+-Save button in the Expense List pushes an object into an array, which is then stored in localstorage.
+-Clicking the load button allows users to load previously saved data to edit. The changes can then be saved and will be stored in the local storage.
+-If there are multile objects saved, they can be cycled through by Loading save, then Saving changes. Doing this will move on to the next object saved.
+-At the very bottom of the page there is a Clear all data button which will clear localstorage.
 
-Potential:
--Allows users to toggle on/off Dark Mode which would help for night-time use.
-
+-Retrieving the values from the local storage would first check that the local storage is not empty.
 # Technology used
 
 So far I have used Bootstrap, Jquery & Chart.Js to help me make the website.

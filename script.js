@@ -293,7 +293,6 @@ function loadData() {
       alert("There is no save data!");
     } else {
       noClick = 1;
-      console.log(loadData[saveNo].month);
       $(".loadAlert").show();
       $(".saveChange").show();
       $(".saveEL").hide();
@@ -339,7 +338,6 @@ function delData() {
   );
   if (r == true) {
     localStorage.clear();
-    console.log(window.localStorage.length);
     loadData = [];
     saveData = [];
     $(".loadAlert").hide();
