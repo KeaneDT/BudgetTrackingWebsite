@@ -434,7 +434,7 @@ a:hover {
     color: #292b2c;
 }
 
-.saveData, .prevData {
+.saveChange, .prevData {
     border: none;
     color: white;
     padding: 7.5px 16px;

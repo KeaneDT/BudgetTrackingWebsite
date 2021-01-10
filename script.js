@@ -5,6 +5,7 @@ $(document).ready(function() {
     $(".saveEL").click(saveData);
     $(".loadEL").click(loadData);
     $(".delData").click(delData);
+    $(".saveChange").click(saveChanges);
     $(".toggleChart").click(function(){
         $(".chartBox").toggle();
     })
@@ -12,7 +13,7 @@ $(document).ready(function() {
 
 
 var noClick = 0;
-var saveNo = -1;
+var saveNo = 0;
 let saveFile = [];
 let loadFile = [];
 
@@ -194,8 +195,21 @@ function saveData() {
                 labels: catLabels,
                 totalSpent: total
             }
-            saveFile.push(saveObjectNE);
-            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+
+            saveFile = localStorage.getItem('SaveData');
+            saveFile = JSON.parse(saveFile);
+            
+            if (saveFile !== null) {
+                saveFile.push(saveObjectNE);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            } else {
+                saveFile = []
+                saveFile.push(saveObjectNE);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            }
+            
             document.getElementById("formTop").reset();
             document.getElementById("formBottom").reset();
             clearList();
@@ -213,8 +227,20 @@ function saveData() {
                 labels: catLabels,
                 totalSpent: total
             }
-            saveFile.push(saveObject);
-            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            
+            saveFile = localStorage.getItem('SaveData');
+            saveFile = JSON.parse(saveFile);
+
+            if (saveFile !== null) {
+                saveFile.push(saveObject);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            } else {
+                saveFile = []
+                saveFile.push(saveObject);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            }
             document.getElementById("formTop").reset();
             document.getElementById("formBottom").reset();
             clearList();
@@ -226,7 +252,8 @@ function saveData() {
 }
 
 function loadData() {
-    loadData = [];
+
+    loadData=[];
     var retrievedData = localStorage.getItem("SaveData");
     loadData = JSON.parse(retrievedData);
 
@@ -235,33 +262,33 @@ function loadData() {
             alert("There is no save data!")
         } else {
             noClick = 1;
-            console.log(loadData.slice(saveNo)[0].month);
+            console.log(loadData[saveNo].month);
             $(".loadAlert").show();
-            $(".saveData").show(); //create function to svae changes
-            $(".prevData").show(); //create function to view prev data
+            $(".saveChange").show(); 
+            $(".prevData").show();
             $(".saveEL").hide();
             $(".loadEL").hide();
             
             $(".balanceText").empty();
             $(".balanceText").append('$');
-            $(".balanceText").append(loadData.slice(saveNo)[0].balance);
+            $(".balanceText").append(loadData[saveNo].balance);
 
             $(".budgetText").empty();
             $(".budgetText").append('$');
-            $(".budgetText").append(loadData.slice(saveNo)[0].budget);
+            $(".budgetText").append(loadData[saveNo].budget);
 
             $(".monthText").empty();
-            $(".monthText").append(loadData.slice(saveNo)[0].month);
+            $(".monthText").append(loadData[saveNo].month);
 
             $(".expenseItems").empty();
-            for (var i  = 0; i < loadData[0].expense.length; i++){
-                if (loadData.slice(saveNo)[0].expense[i]==0) {
+            for (var i  = 0; i < loadData[saveNo].expense.length; i++){
+                if (loadData[saveNo].expense[i]==0) {
                     continue;
                 }
-                $(".expenseItems").append("$" + loadData.slice(saveNo)[0].expense[i] + "-[" + loadData.slice(saveNo)[0].labels[i] + "]" + "<br>");
+                $(".expenseItems").append("$" + loadData[saveNo].expense[i] + "-[" + loadData[saveNo].labels[i] + "]" + "<br>");
             }
 
-            catData = loadData.slice(saveNo)[0].expense;
+            catData = loadData[saveNo].expense;
             generateCat();
         }
     } else {
@@ -277,14 +304,14 @@ function delData(){
         loadData = [];
         saveData = [];
         $(".loadAlert").hide();
-        $(".saveData").hide();
+        $(".saveChange").hide();
         $(".saveEL").show();
         $(".prevData").hide();
         $(".loadEL").show();
     }
 }
 
-function saveChange() {
+function saveChanges() {
     balance = document.getElementById("balance").innerHTML;
     budget = document.getElementById("budget").innerHTML;
     budget = budget.replace(/\D/g,'');
@@ -307,14 +334,31 @@ function saveChange() {
                 labels: catLabels,
                 totalSpent: total
             }
-            //
-            saveFile.push(saveObjectNE);
-            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            
+            saveFile = localStorage.getItem('SaveData');
+            saveFile = JSON.parse(saveFile);
+            saveFile.splice(saveNo, 1);
+            
+            if (saveFile !== null) {
+                saveFile.push(saveObjectNE);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            } else {
+                saveFile = []
+                saveFile.push(saveObjectNE);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            }
+            
             document.getElementById("formTop").reset();
             document.getElementById("formBottom").reset();
             clearList();
             $(".budgetText").empty();
             $(".balanceText").empty();
+            $(".saveChange").hide();
+            $(".prevData").hide(); 
+            $(".saveEL").show();
+            $(".loadEL").show();
         }
     } else {
         var r = confirm("Clicking OK will save the data. Are you sure you want to continue?");
@@ -327,13 +371,30 @@ function saveChange() {
                 labels: catLabels,
                 totalSpent: total
             }
-            saveFile.push(saveObject);
-            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            
+            saveFile = localStorage.getItem('SaveData');
+            saveFile = JSON.parse(saveFile);
+            saveFile.splice(saveNo,1);
+
+            if (saveFile !== null) {
+                saveFile.push(saveObject);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            } else {
+                saveFile = []
+                saveFile.push(saveObject);
+                localStorage.clear();
+                localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            }
             document.getElementById("formTop").reset();
             document.getElementById("formBottom").reset();
             clearList();
             $(".budgetText").empty();
             $(".balanceText").empty();
+            $(".saveChange").hide();
+            $(".prevData").hide(); 
+            $(".saveEL").show();
+            $(".loadEL").show();
         }
     }
     
