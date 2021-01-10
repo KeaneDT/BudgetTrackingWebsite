@@ -433,6 +433,22 @@ a:hover {
     background-color: white;
     color: #292b2c;
 }
+
+.saveData, .prevData {
+    border: none;
+    color: white;
+    padding: 7.5px 16px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    display: none;
+    cursor: pointer;
+    margin-bottom: 1%;
+    background-color: white;
+    color: #292b2c;
+}
+
 .trackerName {
     color: white;
 }

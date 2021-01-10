@@ -12,6 +12,7 @@ $(document).ready(function() {
 
 
 var noClick = 0;
+var saveNo = -1;
 let saveFile = [];
 let loadFile = [];
 
@@ -225,6 +226,7 @@ function saveData() {
 }
 
 function loadData() {
+    loadData = [];
     var retrievedData = localStorage.getItem("SaveData");
     loadData = JSON.parse(retrievedData);
 
@@ -232,8 +234,35 @@ function loadData() {
         if (loadData.length==0) {
             alert("There is no save data!")
         } else {
-            console.log(loadData);
+            noClick = 1;
+            console.log(loadData.slice(saveNo)[0].month);
             $(".loadAlert").show();
+            $(".saveData").show(); //create function to svae changes
+            $(".prevData").show(); //create function to view prev data
+            $(".saveEL").hide();
+            $(".loadEL").hide();
+            
+            $(".balanceText").empty();
+            $(".balanceText").append('$');
+            $(".balanceText").append(loadData.slice(saveNo)[0].balance);
+
+            $(".budgetText").empty();
+            $(".budgetText").append('$');
+            $(".budgetText").append(loadData.slice(saveNo)[0].budget);
+
+            $(".monthText").empty();
+            $(".monthText").append(loadData.slice(saveNo)[0].month);
+
+            $(".expenseItems").empty();
+            for (var i  = 0; i < loadData[0].expense.length; i++){
+                if (loadData.slice(saveNo)[0].expense[i]==0) {
+                    continue;
+                }
+                $(".expenseItems").append("$" + loadData.slice(saveNo)[0].expense[i] + "-[" + loadData.slice(saveNo)[0].labels[i] + "]" + "<br>");
+            }
+
+            catData = loadData.slice(saveNo)[0].expense;
+            generateCat();
         }
     } else {
         alert("There is no save data!")
@@ -246,8 +275,68 @@ function delData(){
         localStorage.clear();
         console.log(window.localStorage.length);
         loadData = [];
+        saveData = [];
         $(".loadAlert").hide();
+        $(".saveData").hide();
+        $(".saveEL").show();
+        $(".prevData").hide();
+        $(".loadEL").show();
     }
+}
+
+function saveChange() {
+    balance = document.getElementById("balance").innerHTML;
+    budget = document.getElementById("budget").innerHTML;
+    budget = budget.replace(/\D/g,'');
+    balance = balance.replace(/\D/g,'');
+    month = document.getElementById("monthText").innerHTML;
+    var total = 0;
+    for (var i  = 0; i < catData.length; i++){
+        total += catData[i];
+    }
+    if (budget==0||budget<0) {
+        alert("You cannot save as there is no data!");
+    } else if (total==0) {
+        var x = confirm("There is no expense tracked. Are you sure you want to continue?");
+        if (x==true) {
+            let saveObjectNE = {
+                month: document.getElementById("monthText").innerHTML,
+                budget: budget,
+                balance: balance,
+                expense: catData,
+                labels: catLabels,
+                totalSpent: total
+            }
+            //
+            saveFile.push(saveObjectNE);
+            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            document.getElementById("formTop").reset();
+            document.getElementById("formBottom").reset();
+            clearList();
+            $(".budgetText").empty();
+            $(".balanceText").empty();
+        }
+    } else {
+        var r = confirm("Clicking OK will save the data. Are you sure you want to continue?");
+        if (r==true) {
+            let saveObject = {
+                month: document.getElementById("monthText").innerHTML,
+                budget: budget,
+                balance: balance,
+                expense: catData,
+                labels: catLabels,
+                totalSpent: total
+            }
+            saveFile.push(saveObject);
+            localStorage.setItem('SaveData', JSON.stringify(saveFile));
+            document.getElementById("formTop").reset();
+            document.getElementById("formBottom").reset();
+            clearList();
+            $(".budgetText").empty();
+            $(".balanceText").empty();
+        }
+    }
+    
 }
 
 
