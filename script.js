@@ -340,10 +340,16 @@ function delData() {
     localStorage.clear();
     loadData = [];
     saveData = [];
+    clearList();
+    $(".monthText").empty();
+    $(".budgetText").empty();
+    $(".balanceText").empty();
     $(".loadAlert").hide();
     $(".saveChange").hide();
     $(".saveEL").show();
     $(".loadEL").show();
+    document.getElementById("formTop").reset();
+    document.getElementById("formBottom").reset();
   }
 }
 
