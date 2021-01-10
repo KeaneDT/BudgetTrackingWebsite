@@ -1,3 +1,5 @@
+# Link 
+https://keanedt.github.io/ID_S10202630_Keane-Travasso_ASG2/
 # ID_S10202630_Keane-Travasso_ASG2
 
 For this ID Assignment 2 I have decided to use Html,Css,Javascript,Bootstrap and some APIs to make a budget tracker application that can be ued on both mobile and desktop. The name of this application is a simple one, Budget Tracker. I might improve on the name futher down the road. The application consists of 3 main parts, the title screen, the about section and the tracker itself. 
@@ -7,14 +9,6 @@ The tracker will use simple Javascript, to take the budget entered by the user t
 (I might find an API to make this process of tracking and logging data easier.)
 
 Some additional features i would like to add to the website is a dark mode feature which will switch the color theme of the page upon clicking an icon.
-
-# Problems Faced
-I initially wanted to add a line chat below the doughnut chart, which would compare the total expenses across the various months objects saved in the local storage. However, I had to remove this feature as the line chart would keep bugging out and would break the application.
-
-Another Issue that users might face that I was unable to fix was the doughnut chart disappearing and not being loaded back in after creating and saving objects rapidly. This only happed to me once so it should not be too much of an issue.
-
-Creating an object month with the same name would also bug the Localstorage out and would mix up the values.
-
 # Reason
 
 The main reason I am creating this application is to help people to keep track of their spending habits and alongside this, promote healthy spending habits. I think that overspending is an issue in this day and age as I have seen many people not set monthly budgets for themselves and spend an enormous amount of money on unnecessary expenses.
@@ -45,6 +39,12 @@ It consists of 2 .xd files, one for the Desktop view and the other for the mobil
 -At the very bottom of the page there is a Clear all data button which will clear localstorage.
 
 -Retrieving the values from the local storage would first check that the local storage is not empty.
+# Problems Faced
+I initially wanted to add a line chat below the doughnut chart, which would compare the total expenses across the various months objects saved in the local storage. However, I had to remove this feature as the line chart would keep bugging out and would break the application.
+
+Another Issue that users might face that I was unable to fix was the doughnut chart disappearing and not being loaded back in after creating and saving objects rapidly. This only happed to me once so it should not be too much of an issue.
+
+Creating an object month with the same name would also bug the Localstorage out and would mix up the values.
 # Technology used
 
 So far I have used Bootstrap, Jquery & Chart.Js to help me make the website.
