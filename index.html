@@ -1,72 +1,87 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <title>Budget Tracking</title>
     <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- Fonts -->
-    <link rel="preconnect" href="https://fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Courgette&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Exo:wght@300&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&display=swap" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
     <!-- Style.css -->
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-     <!-- Navigation Bar-->
-     <nav class="navbar navbar-expand-md navbar-dark bg-dark sticky-top">
-       <!--To make navbar 100% of top-->
-       <div class="container-fluid">
-         <!--Customizing Navigtation Bar-->
-         <a href="#trackerSection" class="navName">$</a>
-         <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+    <!-- Navigation Bar-->
+    <nav class="navbar navbar-expand-md sticky-top">
+      <!--To make navbar 100% of top-->
+      <div class="container-fluid">
+        <!--Customizing Navigtation Bar-->
+        <a href="#trackerSection" class="navName">$</a>
+        <button
+          type="button"
+          class="navbar-toggle"
+          data-toggle="collapse"
+          data-target="#myNavbar"
+        >
           <span class="navbar-toggler-icon"></span>
         </button>
-         <div class="collapse navbar-collapse" id="myNavbar">
-           <ul class="navbar-nav ml-auto">
-             <li class="nav-item active">
-               <a href="#homeSection" class="nav-link">Home</a>
-             </li>
-             <li class="nav-item active">
+        <div class="collapse navbar-collapse" id="myNavbar">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a href="#homeSection" class="nav-link">Home</a>
+            </li>
+            <li class="nav-item active">
               <a href="#aboutSection" class="nav-link">About</a>
             </li>
             <li class="nav-item active">
               <a href="#trackerSection" class="nav-link">Tracker</a>
             </li>
-           </ul>
-         </div>
-       </div>
-     </nav>
-     <!--Money Background Introduction-->
-     <div class="moneyBg" id="homeSection">
-      <div class="moneyTitle">
-        <h1>Budget Tracker<br></h1>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <!--Money Background Introduction-->
+    <div class="moneyBg" id="homeSection">
+      <div class="col-12 text-center moneyTitle">
+        <h1>Budget Tracker</h1>
       </div>
     </div>
     <!--About Section-->
-    <div class="container padding" id="aboutSection">
+    <div class="container padding aboutSection" id="aboutSection">
       <div class="row text-center">
         <div class="col-12">
+          <button onclick="darkMode()" class="dmButton">Dark Mode</button>
           <div class="aboutTitle">
             <h1 class="display-4">About</h1>
           </div>
           <div class="aboutText">
-            <p class="lead">The Budget Tracker Application was created to help anyone track their expenses. The ultimate goal of this application is to ensure that the user develops good spending habits and does not spend money excessively. This will allow users from going over their budget as well.</p>
+            <p class="lead">
+              The Budget Tracker Application was created to help anyone track
+              their expenses. The ultimate goal of this application is to ensure
+              that the user develops good spending habits and does not spend
+              money excessively. This will allow users from going over their
+              budget as well.<br><br>
+
+              To use the application, you will first have to input the Month name and the budget you allocated.
+              <br><br>After clicking submit, the Budget and Balance box will be filled up with the relevant data. The next step is to input your expenses along with which category the money was spent. The expenses will be deducted from the balance amount everytime the submit button is clicked.<br><br>Alongside this, the expenses will be listed along with their respective categories in the Expense List. If there are any mistakes in the expenses added, there is a clear feature that clears the Expense List and restores the original balance.<br><br>Clicking the 'Toggle Charts' button near the bottom of the website will show a Doughnut Chart. This is a visual representation of the expenses, grouped by their category. Clicking the 'Save' button located in the Expense List, next to the 'Clear' button will save the data onto the LocalStorage. This data can be loaded using the 'Load Data' button located underneath the Application header, edited then saved by clicking on the 'Save Changes' button.<br><br>If there are multiple Months saved to the LocalStorage, they can be cycled through by clicking on 'Load Data', then 'Save Changes'.<br><br>Some other features included in this application is the Dark Mode feature which helps reduce eye strain when using this application in dark places and the 'Clear All Save Data' button located at the very bottom of the website which does as it's name suggests.<br><br>I hope you have a good time tracking your expenses using this Budget Tracker!
+            </p>
           </div>
         </div>
       </div>
     </div>
     <!--Tracker Section-->
     <div class="trackerName" id="trackerSection">
-      <div class="container-fluid text-center bg-dark">
+      <div class="container-fluid text-center darkDiv">
         <h2>The Application</h2>
         <button class="btn-sm loadEL">Load Data</button>
-        <button class="btn-sm prevData">View Next</button>
         <button class="btn-sm saveChange">Save Changes</button>
       </div>
     </div>
@@ -77,18 +92,32 @@
           <form id="formTop">
             <div class="loadAlert">
               <div class="alert">
-                <span class="lead closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                <span
+                  class="lead closebtn"
+                  onclick="this.parentElement.style.display='none';"
+                  >&times;</span
+                >
                 Remember to save your data when you're done!
               </div>
             </div>
             <div class="monthBox">
               <label for="monthInput">Enter Month:</label>
-              <input type="text" id="monthInput" name="monthInput" placeholder="Month">
+              <input
+                type="text"
+                id="monthInput"
+                name="monthInput"
+                placeholder="Month"
+              />
             </div>
             <!--Input for the total month budget-->
             <div class="budgetBox">
               <label for="budgetInput">Enter Budget for the Month($):</label>
-              <input type="text" id="budgetInput" name="budgetInput" placeholder="Budget">
+              <input
+                type="text"
+                id="budgetInput"
+                name="budgetInput"
+                placeholder="Budget"
+              />
             </div>
           </form>
           <button class="topSubmit">Submit</button>
@@ -97,7 +126,7 @@
       </div>
     </div>
     <!--2 columns to display the budget (left) and the balance (right)-->
-    <div class="displayBudBal bg-dark">
+    <div class="displayBudBal darkDiv">
       <div class="row m-0 BB">
         <div class="col-6 text-center">
           <h3>[Budget]</h3>
@@ -115,7 +144,12 @@
         <form id="formBottom">
           <div>
             <label for="expenseInput">Enter Expense($):</label>
-            <input type="text" id="expenseInput" name="expenseInput" placeholder="Expense"> 
+            <input
+              type="text"
+              id="expenseInput"
+              name="expenseInput"
+              placeholder="Expense"
+            />
           </div>
           <div>
             <label for="expenseCat">Select Category:</label>
@@ -126,21 +160,23 @@
               <option value="Bills & Utilities">Bills & Utilities</option>
               <option value="Savings">Savings</option>
               <option value="Others">Others</option>
-            </select> 
+            </select>
           </div>
         </form>
         <button class="bottomSubmit">Submit</button>
       </div>
     </div>
     <!--Expenses List Container-->
-    <div class="container-fluid expensesList bg-dark">
+    <div class="container-fluid expensesList">
       <!--Title for Expenses List-->
-      <div class="elTitle">
-        Expenses List:
-      </div>
+      <div class="elTitle">Expenses List:</div>
       <div class="btn-group" role="group">
-        <button type='button' class='btn btn-primary btn-sm clearEL'>Clear</button>
-        <button type='button' class='btn btn-primary btn-sm saveEL'>Save</button>
+        <button type="button" class="btn btn-primary btn-sm clearEL">
+          Clear
+        </button>
+        <button type="button" class="btn btn-primary btn-sm saveEL">
+          Save
+        </button>
       </div>
       <!--Empty Box that will have the values appended when input-->
       <div class="col-12 text-center expenseItems"></div>
@@ -151,23 +187,38 @@
     <!--Chart JS Container-->
     <div class="container-fluid chartBox">
       <div class="alert">
-        <span class="lead closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+        <span
+          class="lead closebtn"
+          onclick="this.parentElement.style.display='none';"
+          >&times;</span
+        >
         Charts will only generate upon inputting values above!
       </div>
       <h2 class="text-center lead">Category Chart</h2>
       <div class="col-12 text-center dCat">
         <canvas id="pieExpense"></canvas>
       </div>
-      
     </div>
     <div class="container-fluid text-center">
       <button class="delData">Clear all save data</button>
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script
+      src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
     <!--Chart Js-->
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
     <!--Script.js-->
