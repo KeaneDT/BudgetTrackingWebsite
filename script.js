@@ -3,6 +3,8 @@ $(document).ready(function() {
     $(".bottomSubmit").click(addExpense);
     $(".clearEL").click(clearList);
     $(".saveEL").click(saveData);
+    $(".loadEL").click(loadData);
+    $(".delData").click(delData);
     $(".toggleChart").click(function(){
         $(".chartBox").toggle();
     })
@@ -11,6 +13,7 @@ $(document).ready(function() {
 
 var noClick = 0;
 let saveFile = [];
+let loadFile = [];
 
 //First DOughnut Chart to showcase the categories
 var catData = [0, 0, 0, 0, 0, 0];
@@ -219,6 +222,32 @@ function saveData() {
         }
     }
     
+}
+
+function loadData() {
+    var retrievedData = localStorage.getItem("SaveData");
+    loadData = JSON.parse(retrievedData);
+
+    if (retrievedData !== null) {
+        if (loadData.length==0) {
+            alert("There is no save data!")
+        } else {
+            console.log(loadData);
+            $(".loadAlert").show();
+        }
+    } else {
+        alert("There is no save data!")
+    }
+}
+
+function delData(){
+    var r = confirm("Clicking OK will clear all data saved. Are you sure you want to continue?");
+    if (r==true){
+        localStorage.clear();
+        console.log(window.localStorage.length);
+        loadData = [];
+        $(".loadAlert").hide();
+    }
 }
 
 

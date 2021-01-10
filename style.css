@@ -419,7 +419,7 @@ a:hover {
 
 /*CSS Styling for the Application*/
 /*CSS Styling for the Application Title*/
-.loadData {
+.loadEL {
     border: none;
     color: white;
     padding: 7.5px 16px;
@@ -441,6 +441,10 @@ a:hover {
     padding-bottom: 5px;
 }
 /*CSS Styling for Month Input*/
+.loadAlert {
+  display: none;
+  padding-top: 1%;
+}
 .monthBox {
     padding-top: 1%;
     padding-bottom: 1%;

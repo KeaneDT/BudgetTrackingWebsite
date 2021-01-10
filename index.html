@@ -65,7 +65,7 @@
     <div class="trackerName" id="trackerSection">
       <div class="container-fluid text-center bg-dark">
         <h2>The Application</h2>
-        <button class="btn-sm loadData">Load Data</button>
+        <button class="btn-sm loadEL">Load Data</button>
       </div>
     </div>
     <!--Input for the month name-->
@@ -73,6 +73,12 @@
       <div class="col-12 text-center">
         <div>
           <form id="formTop">
+            <div class="loadAlert">
+              <div class="alert">
+                <span class="lead closebtn" onclick="this.parentElement.style.display='none';">&times;</span> 
+                Remember to save your data when you're done!
+              </div>
+            </div>
             <div class="monthBox">
               <label for="monthInput">Enter Month:</label>
               <input type="text" id="monthInput" name="monthInput" placeholder="Month">
@@ -151,6 +157,9 @@
         <canvas id="pieExpense"></canvas>
       </div>
       
+    </div>
+    <div class="container-fluid text-center">
+      <button class="delData">Clear all save data</button>
     </div>
 
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
